@@ -5,7 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bin": "bin/schema-tsifier",
+  "bin": {
+		"schema-tsifier": "bin/schema-tsifier"
+	},
   "author": "mizchi",
   "license": "MIT",
   "dependencies": {
