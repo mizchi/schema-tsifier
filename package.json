@@ -1,5 +1,5 @@
 {
-  "name": "qiita-js",
+  "name": "schema-tsifier",
   "version": "1.0.1",
   "main": "schema-tsifier.js",
   "scripts": {
