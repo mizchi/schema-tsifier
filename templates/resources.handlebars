@@ -1,21 +1,21 @@
-module {{namespace}} {
-  export function request(method: string, href: string, params: Object){
-    //TODO: do something
-  }
-
-  {{#each resources}}
-  export class {{classify resource}} {
-    {{#each endpoints}}
-
-    {{#if inputs.length}}
-    public static {{title}}({{#if hasArgs}}id: string, {{/if}}params: { {{#each inputs}}{{tag2typeExpr .}}; {{/each}} }){
-    {{else}}
-    public static {{title}}({{#if hasArgs}}id: string, {{/if}}params = {}) {
-    {{/if}}
-      return request('{{method}}', {{#if hasArgs}} {{{buildUrl}}} {{else}} '{{href}}' {{/if}}, params);
+  export module Resouces {
+    export function request(method: string, href: string, params: Object){
+      //TODO: do something
     }
+
+    {{#each resources}}
+    export class {{classify resource}} {
+      {{#each endpoints}}
+
+      {{#if inputs.length}}
+      public static {{title}}({{#if hasArgs}}id: string, {{/if}}params: { {{#each inputs}}{{tag2typeExpr .}}; {{/each}} }){
+      {{else}}
+      public static {{title}}({{#if hasArgs}}id: string, {{/if}}params = {}) {
+      {{/if}}
+        return request('{{method}}', {{#if hasArgs}} {{{buildUrl}}} {{else}} '{{href}}' {{/if}}, params);
+      }
+      {{/each}}
+    }
+
     {{/each}}
   }
-
-  {{/each}}
-}
