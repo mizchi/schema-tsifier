@@ -1,4 +1,5 @@
 declare module Entities {
+
   export interface AccountFeature{
     created_at: any;
     description: any;
