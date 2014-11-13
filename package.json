@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bin": "./run.js",
+  "bin": "bin/schema-tsifier",
   "author": "mizchi",
   "license": "MIT",
   "dependencies": {

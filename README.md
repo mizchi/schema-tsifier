@@ -6,7 +6,7 @@ Convert hyper schema to typescript definition.
 
 ```
 npm install mizchi/schema-tsifier
-schema-tasifier schema.yml
+schema-tasifier schema.yml > schema.ts
 ```
 
 ## LISENCE
