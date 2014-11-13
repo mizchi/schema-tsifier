@@ -1,6 +1,5 @@
 changeCase = require 'change-case'
 h = require 'handlebars'
-h.registerHelper 'classify', (name) -> changeCase.pascalCase name
 
 getTypeName = (expr) ->
   if expr.type.length is 2
@@ -55,31 +54,8 @@ tag2typeExpr = (expr) ->
   else
     "#{expr.name}: any"
 
+h.registerHelper 'classify', (name) -> changeCase.pascalCase name
 h.registerHelper 'tag2typeExpr', tag2typeExpr
 
-template = h.compile('''
-module {{namespace}} {
-  export function request(method: string, href: string, params: Object){
-    //TODO: do something
-  }
-
-  {{#each resources}}
-  export class {{classify resource}} {
-    {{#each endpoints}}
-
-    {{#if inputs.length}}
-    public static {{title}}({{#if hasArgs}}id: string, {{/if}}params: { {{#each inputs}}{{tag2typeExpr .}}; {{/each}} }){
-    {{else}}
-    public static {{title}}({{#if hasArgs}}id: string, {{/if}}params = {}) {
-    {{/if}}
-      return request('{{method}}', {{#if hasArgs}} {{{buildUrl}}} {{else}} '{{href}}' {{/if}}, params);
-    }
-    {{/each}}
-  }
-
-  {{/each}}
-}
-''')
-
-module.exports = (m) ->
-  template m
+module.exports = (template, obj) ->
+  h.compile(template)(obj)

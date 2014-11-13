@@ -27,8 +27,9 @@ buildIndexes = do ->
       buildIndexes v, ns
     flattened
 
-renderEntities = require './entity-renderer'
-renderApi = require './api-renderer'
+renderer = require './renderer'
+entitiesTemplate = fs.readFileSync('./templates/entities.handlebars').toString()
+resourcesTemplate = fs.readFileSync('./templates/resources.handlebars').toString()
 
 splitter = /{.*}/g
 module.exports = (filename, namespace, withResources = false) ->
@@ -42,7 +43,9 @@ module.exports = (filename, namespace, withResources = false) ->
       p = new Property indexes, propName, val
       classes[propName] = p
       p
-  console.log renderEntities
+
+  # console.log rernderer resoucesTemplate, {resources, namespace: namespace+'.Resources'}
+  console.log renderer entitiesTemplate,
     namespace: namespace + '.Entities'
     models: models
 
@@ -60,9 +63,6 @@ module.exports = (filename, namespace, withResources = false) ->
                 {}
 
             hasArgs = !!link.href.match(splitter)
-            # console.log link.title, ':hasArgs', hasArgs, link.href
-
-            # hasArgs = argCount > 0
             buildUrl = do ->
               [a, b] = link.href.split(splitter)
               ->
@@ -70,8 +70,6 @@ module.exports = (filename, namespace, withResources = false) ->
                   "'#{a}' + id + '#{b}'"
                 else
                   "'#{a}' + id"
-
-            # console.log hasArgs, buildUrl()
 
             buildUrl: buildUrl
             hasArgs: hasArgs
@@ -85,4 +83,4 @@ module.exports = (filename, namespace, withResources = false) ->
         resource: propName
         endpoints: endpoints ? []
 
-    console.log renderApi {resources, namespace: namespace+'.Resources'}
+    console.log renderer resourcesTemplate, {resources, namespace: namespace+'.Resources'}

@@ -10,5 +10,5 @@ var filename = argv._[0];
 var namespace = argv._[1];
 var withResources = argv['with-resources']
 
-if(!namespace) namespace = 'Entities';
+if(!namespace) namespace = 'App';
 tsifier(filename, namespace, withResources);

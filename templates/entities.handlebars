@@ -1,0 +1,11 @@
+declare module {{namespace}} {
+
+  {{#each models}}
+  export interface {{classify name}} {
+  {{#each properties}}
+    {{tag2typeExpr .}};
+  {{/each}}
+  }
+
+  {{/each}}
+}
