@@ -68,11 +68,11 @@ module {{namespace}} {
     {{#each endpoints}}
 
     {{#if inputs.length}}
-    public static {{title}}(params: { {{#each inputs}}{{tag2typeExpr .}}; {{/each}} }) {
+    public static {{title}}({{#if hasArgs}}id: string, {{/if}}params: { {{#each inputs}}{{tag2typeExpr .}}; {{/each}} }){
     {{else}}
-    public static {{title}}(params = {}) {
+    public static {{title}}({{#if hasArgs}}id: string, {{/if}}params = {}) {
     {{/if}}
-      return request('{{method}}', '{{href}}', params);
+      return request('{{method}}', {{#if hasArgs}} {{{buildUrl}}} {{else}} '{{href}}' {{/if}}, params);
     }
     {{/each}}
   }

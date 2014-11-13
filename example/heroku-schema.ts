@@ -1,6 +1,6 @@
-declare module Entities {
+declare module Entities.Entities {
 
-  export interface AccountFeature{
+  export interface AccountFeature {
     created_at: any;
     description: any;
     doc_url: any;
@@ -11,7 +11,7 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface Account{
+  export interface Account {
     allow_tracking: any;
     beta: any;
     created_at: any;
@@ -24,14 +24,14 @@ declare module Entities {
     verified: any;
   }
 
-  export interface AddonService{
+  export interface AddonService {
     created_at: any;
     id: any;
     name: any;
     updated_at: any;
   }
 
-  export interface Addon{
+  export interface Addon {
     addon_service: {id: any; name: any};
     config_vars: any;
     created_at: any;
@@ -42,7 +42,7 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface AppFeature{
+  export interface AppFeature {
     created_at: any;
     description: any;
     doc_url: any;
@@ -53,7 +53,7 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface AppSetup{
+  export interface AppSetup {
     id: any;
     created_at: any;
     updated_at: any;
@@ -66,7 +66,7 @@ declare module Entities {
     resolved_success_url?: string;
   }
 
-  export interface AppTransfer{
+  export interface AppTransfer {
     app: {name: any; id: any};
     created_at: any;
     id: any;
@@ -76,7 +76,7 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface App{
+  export interface App {
     archived_at?: string;
     buildpack_provided_description?: string;
     build_stack: {id: any; name: any};
@@ -95,13 +95,13 @@ declare module Entities {
     web_url: any;
   }
 
-  export interface BuildResult{
+  export interface BuildResult {
     build: {id: any; status: any};
     exit_code: any;
     lines: any;
   }
 
-  export interface Build{
+  export interface Build {
     created_at: any;
     id: any;
     source_blob: {url: any; version?: string};
@@ -111,17 +111,17 @@ declare module Entities {
     user: {id: any; email: any};
   }
 
-  export interface Collaborator{
+  export interface Collaborator {
     created_at: any;
     id: any;
     updated_at: any;
     user: {email: any; id: any};
   }
 
-  export interface ConfigVar{
+  export interface ConfigVar {
   }
 
-  export interface Credit{
+  export interface Credit {
     amount: any;
     balance: any;
     created_at: any;
@@ -131,14 +131,14 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface Domain{
+  export interface Domain {
     created_at: any;
     hostname: any;
     id: any;
     updated_at: any;
   }
 
-  export interface Dyno{
+  export interface Dyno {
     attach_url?: string;
     command: any;
     created_at: any;
@@ -151,7 +151,7 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface Formation{
+  export interface Formation {
     command: any;
     created_at: any;
     id: any;
@@ -161,7 +161,7 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface Invoice{
+  export interface Invoice {
     charges_total: any;
     created_at: any;
     credits_total: any;
@@ -171,7 +171,7 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface Key{
+  export interface Key {
     comment: any;
     created_at: any;
     email: any;
@@ -181,7 +181,7 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface LogDrain{
+  export interface LogDrain {
     addon: {id: any};
     created_at: any;
     id: any;
@@ -190,14 +190,14 @@ declare module Entities {
     url: any;
   }
 
-  export interface LogSession{
+  export interface LogSession {
     created_at: any;
     id: any;
     logplex_url: any;
     updated_at: any;
   }
 
-  export interface OauthAuthorization{
+  export interface OauthAuthorization {
     access_token: {expires_in?: number; id: any; token: any};
     client: {id: any; name: any; redirect_uri: any};
     created_at: any;
@@ -208,7 +208,7 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface OauthClient{
+  export interface OauthClient {
     created_at: any;
     id: any;
     ignores_delinquent?: boolean;
@@ -218,10 +218,10 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface OauthGrant{
+  export interface OauthGrant {
   }
 
-  export interface OauthToken{
+  export interface OauthToken {
     access_token: {expires_in?: number; id: any; token: any};
     authorization: {id: any};
     client: {secret: any};
@@ -234,7 +234,7 @@ declare module Entities {
     user: {id: any};
   }
 
-  export interface OrganizationAppCollaborator{
+  export interface OrganizationAppCollaborator {
     created_at: any;
     id: any;
     role: any;
@@ -242,7 +242,7 @@ declare module Entities {
     user: {email: any; id: any};
   }
 
-  export interface OrganizationApp{
+  export interface OrganizationApp {
     archived_at?: string;
     buildpack_provided_description?: string;
     created_at: any;
@@ -263,7 +263,7 @@ declare module Entities {
     web_url: any;
   }
 
-  export interface OrganizationMember{
+  export interface OrganizationMember {
     created_at: any;
     email: any;
     role: any;
@@ -271,7 +271,7 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface Organization{
+  export interface Organization {
     created_at: any;
     credit_card_collections: any;
     default: any;
@@ -281,14 +281,14 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface OtpSecret{
+  export interface OtpSecret {
     created_at: any;
     id: any;
     updated_at: any;
     url: any;
   }
 
-  export interface Plan{
+  export interface Plan {
     created_at: any;
     default: any;
     description: any;
@@ -299,14 +299,14 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface RateLimit{
+  export interface RateLimit {
     remaining: any;
   }
 
-  export interface RecoveryCode{
+  export interface RecoveryCode {
   }
 
-  export interface Region{
+  export interface Region {
     created_at: any;
     description: any;
     id: any;
@@ -314,7 +314,7 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface Release{
+  export interface Release {
     created_at: any;
     description: any;
     id: any;
@@ -324,7 +324,7 @@ declare module Entities {
     version: any;
   }
 
-  export interface Slug{
+  export interface Slug {
     blob: {method: any; url: any};
     buildpack_provided_description?: string;
     commit?: string;
@@ -336,11 +336,11 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface Source{
+  export interface Source {
     source_blob: {get_url: any; put_url: any};
   }
 
-  export interface SslEndpoint{
+  export interface SslEndpoint {
     certificate_chain: any;
     cname: any;
     created_at: any;
@@ -349,12 +349,132 @@ declare module Entities {
     updated_at: any;
   }
 
-  export interface Stack{
+  export interface Stack {
     created_at: any;
     id: any;
     name: any;
     state: any;
     updated_at: any;
+  }
+
+}
+module Entities.Resources {
+  export function request(method: string, href: string, params: Object){
+    //TODO: do something
+  }
+
+  export class AccountFeature {
+  }
+
+  export class Account {
+  }
+
+  export class AddonService {
+  }
+
+  export class Addon {
+  }
+
+  export class AppFeature {
+  }
+
+  export class AppSetup {
+  }
+
+  export class AppTransfer {
+  }
+
+  export class App {
+  }
+
+  export class BuildResult {
+  }
+
+  export class Build {
+  }
+
+  export class Collaborator {
+  }
+
+  export class ConfigVar {
+  }
+
+  export class Credit {
+  }
+
+  export class Domain {
+  }
+
+  export class Dyno {
+  }
+
+  export class Formation {
+  }
+
+  export class Invoice {
+  }
+
+  export class Key {
+  }
+
+  export class LogDrain {
+  }
+
+  export class LogSession {
+  }
+
+  export class OauthAuthorization {
+  }
+
+  export class OauthClient {
+  }
+
+  export class OauthGrant {
+  }
+
+  export class OauthToken {
+  }
+
+  export class OrganizationAppCollaborator {
+  }
+
+  export class OrganizationApp {
+  }
+
+  export class OrganizationMember {
+  }
+
+  export class Organization {
+  }
+
+  export class OtpSecret {
+  }
+
+  export class Plan {
+  }
+
+  export class RateLimit {
+  }
+
+  export class RecoveryCode {
+  }
+
+  export class Region {
+  }
+
+  export class Release {
+  }
+
+  export class Slug {
+  }
+
+  export class Source {
+  }
+
+  export class SslEndpoint {
+  }
+
+  export class Stack {
   }
 
 }

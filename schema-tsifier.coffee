@@ -28,7 +28,10 @@ buildIndexes = do ->
     flattened
 
 renderEntities = require './entity-renderer'
-module.exports = (filename, namespace) ->
+renderApi = require './api-renderer'
+
+splitter = /{.*}/g
+module.exports = (filename, namespace, withResources = false) ->
   schema = loadScheme filename
   indexes = buildIndexes schema
 
@@ -39,43 +42,47 @@ module.exports = (filename, namespace) ->
       p = new Property indexes, propName, val
       classes[propName] = p
       p
+  console.log renderEntities
+    namespace: namespace + '.Entities'
+    models: models
 
-  # entityCode = renderEntities
-  #   namespace: namespace
-  #   models: models
+  if withResources
+    resources =
+      for propName, val of schema.properties then do (propName, val) ->
+        returnValue = classes[propName]
 
-  resources =
-    for propName, val of schema.properties
-      returnValue = classes[propName]
+        endpoints =
+          val.links?.map (link) ->
+            inputs =
+              if link.schema
+                new Property indexes, link.method+' '+link.href, link.schema
+              else
+                {}
 
-      endpoints =
-        for link in val.links
-          # console.log '--------------'
-          # console.log link.method, link.href
-          inputs =
-            if link.schema
-              new Property indexes, link.method+' '+link.href, link.schema
-            else
-              {}
+            hasArgs = !!link.href.match(splitter)
+            # console.log link.title, ':hasArgs', hasArgs, link.href
 
-          # console.log util.inspect
-          #   href: link.href
-          #   method: link.method
-          #   inputs: inputs?.properties ? []
-          #   returnValue: returnValue
-          # , false, null
+            # hasArgs = argCount > 0
+            buildUrl = do ->
+              [a, b] = link.href.split(splitter)
+              ->
+                if b.length > 0
+                  "'#{a}' + id + '#{b}'"
+                else
+                  "'#{a}' + id"
 
-          title: link.title
-          href: link.href
-          method: link.method
-          inputs: inputs?.properties ? []
-          returnValue: returnValue
-          isReturnArray: false
+            # console.log hasArgs, buildUrl()
 
-      resource: propName
-      endpoints: endpoints
-  # console.log util.inspect resources, false, null
+            buildUrl: buildUrl
+            hasArgs: hasArgs
+            title: link.title
+            href: link.href
+            method: link.method
+            inputs: inputs?.properties ? []
+            returnValue: returnValue
+            isReturnArray: false
 
-  renderApi = require './api-renderer'
-  # console.log renderApi
-  console.log renderApi {resources, namespace: 'Qiita.Resources'}
+        resource: propName
+        endpoints: endpoints ? []
+
+    console.log renderApi {resources, namespace: namespace+'.Resources'}

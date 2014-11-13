@@ -61,7 +61,7 @@ template = h.compile('''
 declare module {{namespace}} {
 
   {{#each models}}
-  export interface {{classify name}}{
+  export interface {{classify name}} {
   {{#each properties}}
     {{tag2typeExpr .}};
   {{/each}}

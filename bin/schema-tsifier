@@ -2,9 +2,13 @@
 
 require('coffee-script/register');
 var tsifier = require('../schema-tsifier');
-var argv = require('optimist').argv;
+var argv = require('optimist')
+  .boolean('with-resources')
+  .argv;
 
 var filename = argv._[0];
 var namespace = argv._[1];
+var withResources = argv['with-resources']
+
 if(!namespace) namespace = 'Entities';
-tsifier(filename, namespace);
+tsifier(filename, namespace, withResources);
