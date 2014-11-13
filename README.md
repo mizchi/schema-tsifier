@@ -2,12 +2,19 @@
 
 Convert hyper schema to typescript definition.
 
-## Install
+## Install and How to use
 
 ```
-npm install mizchi/schema-tsifier
-schema-tasifier schema.yml > schema.ts
+npm install schema-tsifier -g
+schema-tsifier schema.yml 'MySchema.Entities'> schema.ts
 ```
+
+See `example/heroku-schema.json` and `example/heroku-schema.ts`.
+
+## TODO
+
+- Generate javascript client
+- Add tests
 
 ## LISENCE
 
