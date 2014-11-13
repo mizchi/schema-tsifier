@@ -28,8 +28,8 @@ buildIndexes = do ->
     flattened
 
 renderer = require './renderer'
-entitiesTemplate = fs.readFileSync('./templates/entities.handlebars').toString()
-resourcesTemplate = fs.readFileSync('./templates/resources.handlebars').toString()
+entitiesTemplate = fs.readFileSync(__dirname+'/templates/entities.handlebars').toString()
+resourcesTemplate = fs.readFileSync(__dirname+'/templates/resources.handlebars').toString()
 
 header = '''
 export module Qiita {
