@@ -21,7 +21,6 @@
         {{#if hasArgs}}id: string, {{/if}}params = {}
       {{/if}}
       ): Thenable<any> {
-        if(!request) throw new Error('You should set Qiita.setRequester() at first');
         return request(
           '{{method}}',
           {{#if hasArgs}} {{{buildUrl}}} {{else}} '{{href}}' {{/if}},

@@ -32,7 +32,7 @@ entitiesTemplate = fs.readFileSync(__dirname+'/templates/entities.handlebars').t
 resourcesTemplate = fs.readFileSync(__dirname+'/templates/resources.handlebars').toString()
 
 header = (namespace)-> """
-export module #{namespace} {
+module #{namespace} {
 """
 
 footer = -> '''
