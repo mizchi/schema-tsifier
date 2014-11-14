@@ -1,18 +1,32 @@
+  export interface Thenable<T> {
+    then: (t: T) => any;
+  }
+
+  var request: <T>(method: string, href: string, params: Object) => Thenable<T>;
+
+  export function setRequester(f) {
+    request = f;
+  }
+
   export module Resources {
-    export function request(method: string, href: string, params: Object){
-      //TODO: do something
-    }
 
     {{#each resources}}
     export class {{classify resource}} {
       {{#each endpoints}}
 
+      public static {{title}}(
       {{#if inputs.length}}
-      public static {{title}}({{#if hasArgs}}id: string, {{/if}}params: { {{#each inputs}}{{tag2typeExpr .}}; {{/each}} }){
+        {{#if hasArgs}}id: string, {{/if}}params: { {{#each inputs}}{{tag2typeExpr .}}; {{/each}} }
       {{else}}
-      public static {{title}}({{#if hasArgs}}id: string, {{/if}}params = {}) {
+        {{#if hasArgs}}id: string, {{/if}}params = {}
       {{/if}}
-        return request('{{method}}', {{#if hasArgs}} {{{buildUrl}}} {{else}} '{{href}}' {{/if}}, params);
+      ): Thenable<any> {
+        if(!request) throw new Error('You should set Qiita.setRequester() at first');
+        return request(
+          '{{method}}',
+          {{#if hasArgs}} {{{buildUrl}}} {{else}} '{{href}}' {{/if}},
+          params
+        );
       }
       {{/each}}
     }

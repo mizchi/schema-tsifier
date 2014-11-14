@@ -31,17 +31,17 @@ renderer = require './renderer'
 entitiesTemplate = fs.readFileSync(__dirname+'/templates/entities.handlebars').toString()
 resourcesTemplate = fs.readFileSync(__dirname+'/templates/resources.handlebars').toString()
 
-header = '''
-export module Qiita {
-'''
+header = (namespace)-> """
+export module #{namespace} {
+"""
 
-footer = '''
+footer = -> '''
 }
 '''
 
 splitter = /{.*}/g
 module.exports = (filename, namespace, withResources = false) ->
-  console.log header
+  console.log header(namespace)
 
   schema = loadScheme filename
   indexes = buildIndexes schema
@@ -95,4 +95,4 @@ module.exports = (filename, namespace, withResources = false) ->
 
     console.log renderer resourcesTemplate, {resources, namespace: namespace+'.Resources'}
 
-  console.log footer
+  console.log footer()
