@@ -1,7 +1,7 @@
   export module Entities {
 
     {{#each models}}
-    interface {{classify name}} {
+    export interface {{classify name}} {
     {{#each properties}}
       {{tag2typeExpr .}};
     {{/each}}
